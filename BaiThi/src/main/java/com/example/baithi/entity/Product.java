@@ -9,7 +9,7 @@ public class Product {
     private String description;
     private int categoryId;
 
-    public Product() {
+    public Product(String name, double price, int quantity, String color, String description) {
     }
 
     public Product(int id, String name, double price, int quantity, String color) {

@@ -50,6 +50,21 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        super.doPost(req, resp);
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+                String name = req.getParameter("name");
+                double price = Double.parseDouble(req.getParameter("price"));
+                int quantity = Integer.parseInt(req.getParameter("quantity"));
+                String color = req.getParameter("color");
+                String description = req.getParameter("description");
+                Product product = new Product(name,price,quantity,color,description);
+                productService.save(product);
+                resp.sendRedirect("/product");
+                break;
+        }
     }
 }
